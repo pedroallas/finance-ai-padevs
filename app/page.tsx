@@ -1,5 +1,9 @@
 const HomePage = () => {
-  return <h1>Pedro Allas</h1>;
+  return (
+    <div className="flex w-screen items-center justify-center">
+      <h1>Pedro Allas</h1>
+    </div>
+  );
 };
 
 export default HomePage;
