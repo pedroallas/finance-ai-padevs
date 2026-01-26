@@ -44,6 +44,7 @@ import { addTransaction } from "../_actions/add-transaction";
 interface UpsertTransactionDialogProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
+  defaultValues?: FormSchema;
 }
 
 const formSchema = z.object({
@@ -79,10 +80,11 @@ type FormSchema = z.infer<typeof formSchema>;
 const UpsertTransactionDialog = ({
   isOpen,
   setIsOpen,
+  defaultValues,
 }: UpsertTransactionDialogProps) => {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    defaultValues: defaultValues ?? {
       // amount: 0, // alterado para evitar conflito com o MoneyInput
       category: TransactionCategory.OTHER,
       date: new Date(),
