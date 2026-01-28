@@ -22,7 +22,10 @@ const HomePage = async ({ searchParams: { month } }: HomeProps) => {
   }
   const monthIsInvalid = !month || !isMatch(month, "MM");
   if (monthIsInvalid) {
-    redirect("?month=01");
+    const currentMonth = (new Date().getMonth() + 1)
+      .toString()
+      .padStart(2, "0"); // ✅ Garante que o mês tenha dois dígitos (ex: "01" para janeiro)
+    redirect(`?month=${currentMonth}`);
   }
   const dashboard = await getDashboard(month);
   return (
