@@ -34,21 +34,26 @@ const DeleteTransactionButton = ({
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button variant="ghost" size="icon" className="text-muted-foreground">
-          <TrashIcon />
+          <TrashIcon className="h-4 w-4" />
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>
+      <AlertDialogContent className="w-[calc(100vw-2rem)] max-w-[calc(100vw-2rem)] gap-4 p-4 sm:w-[95vw] sm:max-w-[500px] sm:gap-6 sm:p-6">
+        <AlertDialogHeader className="space-y-2 sm:space-y-3">
+          <AlertDialogTitle className="text-lg sm:text-xl">
             Você deseja realmente deletar essa transação?
           </AlertDialogTitle>
-          <AlertDialogDescription>
+          <AlertDialogDescription className="text-sm sm:text-base">
             Essa ação não pode ser desfeita.
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancelar</AlertDialogCancel>
-          <AlertDialogAction onClick={handleConfirmDeleteClick}>
+        <AlertDialogFooter className="flex-col-reverse gap-2 sm:flex-row sm:gap-2">
+          <AlertDialogCancel className="mt-0 h-10 w-full text-sm sm:h-10 sm:w-auto sm:text-base">
+            Cancelar
+          </AlertDialogCancel>
+          <AlertDialogAction
+            onClick={handleConfirmDeleteClick}
+            className="h-10 w-full text-sm sm:h-10 sm:w-auto sm:text-base"
+          >
             Continuar
           </AlertDialogAction>
         </AlertDialogFooter>

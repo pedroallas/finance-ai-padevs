@@ -35,10 +35,10 @@ const HomePage = async ({ searchParams: { month } }: HomeProps) => {
   return (
     <>
       <Navbar />
-      <div className="flex h-full flex-col space-y-6 overflow-hidden p-6">
-        <div className="flex justify-between">
-          <h1 className="text-2xl font-bold">Dashboard</h1>
-          <div className="flex items-center gap-3">
+      <div className="flex h-full flex-col space-y-4 overflow-auto p-4 md:space-y-6 md:p-6 lg:overflow-hidden">
+        <div className="flex flex-col justify-between gap-4 sm:flex-row sm:gap-0">
+          <h1 className="text-xl font-bold md:text-2xl">Dashboard</h1>
+          <div className="flex items-center gap-2 sm:gap-3">
             <AiReportButton
               month={month}
               hasPremiumPlan={
@@ -48,21 +48,23 @@ const HomePage = async ({ searchParams: { month } }: HomeProps) => {
             <TimeSelect />
           </div>
         </div>
-        <div className="grid h-full grid-cols-[2fr,1fr] gap-6 overflow-hidden">
-          <div className="flex flex-col gap-6 overflow-hidden">
+        <div className="flex flex-col gap-4 md:gap-6 lg:grid lg:h-full lg:grid-cols-[2fr,1fr] lg:overflow-hidden">
+          <div className="flex flex-col gap-4 md:gap-6 lg:overflow-hidden">
             <SummaryCards
               month={month}
               {...dashboard}
               userCanAddTransaction={userCanAddTransaction}
             />
-            <div className="grid h-full grid-cols-3 grid-rows-1 gap-6 overflow-hidden">
+            <div className="grid grid-cols-1 grid-rows-1 gap-4 md:grid-cols-2 md:gap-6 lg:h-full lg:grid-cols-3 lg:overflow-hidden">
               <TransactionsPieChart {...dashboard} />
               <ExpensesPerCategory
                 expensesPerCategory={dashboard.totalExpensePerCategory}
               />
             </div>
           </div>
-          <LastTransactions lastTransactions={dashboard.lastTransactions} />
+          <div className="hidden lg:block">
+            <LastTransactions lastTransactions={dashboard.lastTransactions} />
+          </div>
         </div>
       </div>
     </>

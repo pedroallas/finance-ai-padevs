@@ -29,7 +29,7 @@ const LastTransactions = ({ lastTransactions }: LastTransactionsProps) => {
   };
   return (
     <ScrollArea className="rounded-md border">
-      <CardHeader className="flex-row items-center justify-between">
+      <CardHeader className="flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
         <CardTitle className="font-bold">Últimas Transacciones</CardTitle>
         <Button variant="outline" className="rounded-full font-bold" asChild>
           <Link href="/transactions">Ver mais</Link>
@@ -51,7 +51,9 @@ const LastTransactions = ({ lastTransactions }: LastTransactionsProps) => {
                 />
               </div>
               <div>
-                <p className="text-sm font-bold">{transaction.name}</p>
+                <p className="max-w-[150px] truncate text-xs font-bold sm:max-w-none sm:text-sm">
+                  {transaction.name}
+                </p>
                 <p className="text-sm text-muted-foreground">
                   {new Date(transaction.date).toLocaleDateString("pt-BR", {
                     day: "2-digit",
@@ -61,7 +63,9 @@ const LastTransactions = ({ lastTransactions }: LastTransactionsProps) => {
                 </p>
               </div>
             </div>
-            <p className={`text-sm font-bold ${getAmountColor(transaction)}`}>
+            <p
+              className={`whitespace-nowrap text-xs font-bold sm:text-sm ${getAmountColor(transaction)}`}
+            >
               {getAmountPrefix(transaction)}
               {formatCurrency(Number(transaction.amount))}
             </p>

@@ -21,7 +21,7 @@ const EditTransactionButton = ({ transaction }: EditTransactionButtonProps) => {
         className="text-muted-foreground"
         onClick={() => setDialogIsOpen(true)}
       >
-        <PencilIcon />
+        <PencilIcon className="h-4 w-4" />
       </Button>
       <UpsertTransactionDialog
         isOpen={dialogIsOpen}

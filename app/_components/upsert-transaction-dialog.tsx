@@ -118,26 +118,35 @@ const UpsertTransactionDialog = ({
       }}
     >
       {/* <DialogTrigger className="asChild"></DialogTrigger> */}
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>
+      <DialogContent className="max-h-[90vh] w-[calc(100vw-2rem)] max-w-[calc(100vw-2rem)] gap-4 overflow-y-auto p-4 sm:w-[95vw] sm:max-w-[500px] sm:gap-6 sm:p-6">
+        <DialogHeader className="space-y-2 sm:space-y-3">
+          <DialogTitle className="text-lg sm:text-xl">
             {isUpdate ? "Atualizar" : "Criar"} transação
           </DialogTitle>
-          <DialogDescription>Insira as informações abaixo</DialogDescription>
+          <DialogDescription className="text-sm sm:text-base">
+            Insira as informações abaixo
+          </DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4 sm:space-y-6"
+          >
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Nome</FormLabel>
+                  <FormLabel className="text-sm sm:text-base">Nome</FormLabel>
                   <FormControl>
-                    <Input placeholder="Digite o nome..." {...field} />
+                    <Input
+                      placeholder="Digite o nome..."
+                      className="h-10 text-sm sm:h-11 sm:text-base"
+                      {...field}
+                    />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-xs sm:text-sm" />
                 </FormItem>
               )}
             />
@@ -146,7 +155,7 @@ const UpsertTransactionDialog = ({
               name="amount"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Valor</FormLabel>
+                  <FormLabel className="text-sm sm:text-base">Valor</FormLabel>
                   <FormControl>
                     <MoneyInput
                       placeholder="Digite o valor..."
@@ -158,7 +167,7 @@ const UpsertTransactionDialog = ({
                       disabled={field.disabled}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-xs sm:text-sm" />
                 </FormItem>
               )}
             />
@@ -167,23 +176,30 @@ const UpsertTransactionDialog = ({
               name="type"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Tipo</FormLabel>
+                  <FormLabel className="text-sm sm:text-base">Tipo</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger {...field}>
+                    <SelectTrigger
+                      {...field}
+                      className="h-10 text-sm sm:h-11 sm:text-base"
+                    >
                       <SelectValue placeholder="Selecione o tipo..." />
                     </SelectTrigger>
                     <SelectContent>
                       {TRANSACTION_TYPES_OPTIONS.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
+                        <SelectItem
+                          key={option.value}
+                          value={option.value}
+                          className="text-sm sm:text-base"
+                        >
                           {option.label}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
-                  <FormMessage />
+                  <FormMessage className="text-xs sm:text-sm" />
                 </FormItem>
               )}
             />
@@ -192,23 +208,32 @@ const UpsertTransactionDialog = ({
               name="category"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Categoria</FormLabel>
+                  <FormLabel className="text-sm sm:text-base">
+                    Categoria
+                  </FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger {...field}>
+                    <SelectTrigger
+                      {...field}
+                      className="h-10 text-sm sm:h-11 sm:text-base"
+                    >
                       <SelectValue placeholder="Selecione uma categoria..." />
                     </SelectTrigger>
                     <SelectContent>
                       {TRANSACTION_CATEGORY_OPTIONS.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
+                        <SelectItem
+                          key={option.value}
+                          value={option.value}
+                          className="text-sm sm:text-base"
+                        >
                           {option.label}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
-                  <FormMessage />
+                  <FormMessage className="text-xs sm:text-sm" />
                 </FormItem>
               )}
             />
@@ -217,23 +242,32 @@ const UpsertTransactionDialog = ({
               name="paymentMethod"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Método de pagamento</FormLabel>
+                  <FormLabel className="text-sm sm:text-base">
+                    Método de pagamento
+                  </FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger {...field}>
+                    <SelectTrigger
+                      {...field}
+                      className="h-10 text-sm sm:h-11 sm:text-base"
+                    >
                       <SelectValue placeholder="Selecione um método de pagamento..." />
                     </SelectTrigger>
                     <SelectContent>
                       {TRANSACTION_PAYMENT_METHOD_OPTIONS.map((option) => (
-                        <SelectItem key={option.value} value={option.value}>
+                        <SelectItem
+                          key={option.value}
+                          value={option.value}
+                          className="text-sm sm:text-base"
+                        >
                           {option.label}
                         </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
-                  <FormMessage />
+                  <FormMessage className="text-xs sm:text-sm" />
                 </FormItem>
               )}
             />
@@ -242,20 +276,27 @@ const UpsertTransactionDialog = ({
               name="date"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Data</FormLabel>
+                  <FormLabel className="text-sm sm:text-base">Data</FormLabel>
                   <DatePicker value={field.value} onChange={field.onChange} />
-                  <FormMessage />
+                  <FormMessage className="text-xs sm:text-sm" />
                 </FormItem>
               )}
             />
 
-            <DialogFooter>
+            <DialogFooter className="flex-col-reverse gap-2 sm:flex-row sm:gap-2">
               <DialogClose asChild>
-                <Button type="button" variant="outline">
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="h-10 w-full text-sm sm:h-10 sm:w-auto sm:text-base"
+                >
                   Cancelar
                 </Button>
               </DialogClose>
-              <Button type="submit">
+              <Button
+                type="submit"
+                className="h-10 w-full text-sm sm:h-10 sm:w-auto sm:text-base"
+              >
                 {isUpdate ? "Atualizar" : "Adicionar"}
               </Button>
             </DialogFooter>
